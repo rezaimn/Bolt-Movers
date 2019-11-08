@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title">Answer Questions</h4>
+  <button (click)="cancel()" aria-label="Close" class="close" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12">
+      <form>
+        <mat-form-field *ngFor="let question of questions;let i=index">
+          <label>{{question.question}}?</label>
+          <input [(ngModel)]="question.answer" matInput [name]="'q-'+i"
+                 type="text">
+        </mat-form-field>
+      </form>
+      <div class="footer-buttons">
+           <span>
+        <button (click)="cancel()" button color="primary" data-dismiss="modal" mat-raised-button
+                type="button">Save</button>
+      </span>
+      </div>
+    </div>
+  </div>
+</div>

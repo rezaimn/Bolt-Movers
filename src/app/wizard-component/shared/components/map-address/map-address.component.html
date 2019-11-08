@@ -1,0 +1,65 @@
+<div fxLayout="row">
+  <div fxFlex="45">
+    <mat-card class="map-card ">
+      <mat-card-header>
+        <mat-card-title>
+          {{label}}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="map-data">
+          <!--<mat-form-field>-->
+          <!--<input  matInput placeholder="Address" >-->
+          <ngxgeo-autocomplete *ngIf="!isFindingAddress" [id]="label" [userSettings]="userSettings" (ngOnChanges)="autoCompleteCallback1($event)"
+            (componentCallback)="autoCompleteCallback1($event)"></ngxgeo-autocomplete>
+          <mat-spinner *ngIf="isFindingAddress" diameter="30"></mat-spinner>
+          <!--</mat-form-field>-->
+          <mat-form-field style="margin-top: 10px">
+            <input [(ngModel)]="street" matInput placeholder="Additional info"/>
+          </mat-form-field>
+          <mat-form-field style="margin-top: 10px">
+            <input matInput [(ngModel)]="zipCode" placeholder="Zip Code" />
+          </mat-form-field>
+          <mat-form-field style="margin-top: 10px">
+            <mat-select placeholder="Building Type" id="type" name="buildingType" (selectionChange)="onBuildingTypeSelected()"
+                        [(ngModel)]="addressData.building">
+              <mat-option *ngFor="let type of buildingTypes;let i=index" [value]="type.id">{{type.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!--
+          <mat-form-field>
+            <mat-select placeholder="Floor">
+              <mat-option *ngFor="let floor of buildingTypes[selectedBuildingTypeIndex]?.floors" [value]="floor">{{floor}}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="55">
+    <mat-card class="map-card">
+      <mat-card-content>
+        <agm-map class="map-height" [latitude]="marker?.lat" [longitude]="marker?.lng"
+          [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="true" (mapClick)="mapClicked($event)">
+
+          <agm-marker [iconUrl]="'assets/images/'+ icon" [latitude]=" marker?.lat" [longitude]="marker?.lng" [label]="marker?.label"
+            [markerDraggable]="marker?.draggable" (dragEnd)="markerDragEnd($event)">
+
+            <agm-info-window>
+              <strong>InfoWindow content</strong>
+            </agm-info-window>
+
+          </agm-marker>
+
+          <!--<agm-circle [latitude]="lat + 0.3" [longitude]="lng"-->
+          <!--[radius]="5000"-->
+          <!--[fillColor]="'red'"-->
+          <!--[circleDraggable]="true"-->
+          <!--[editable]="true">-->
+          <!--</agm-circle>-->
+
+        </agm-map>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

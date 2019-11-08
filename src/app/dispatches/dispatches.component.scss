@@ -1,0 +1,51 @@
+.accordion-card {
+  margin-bottom: 20px;
+}
+
+.furniture-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 40px;
+}
+
+.furniture-card {
+  margin: 0px;
+  padding: 0px;
+}
+
+.crud-box {
+  position: absolute;
+  left: 80%;
+}
+
+.furniture-item {
+  border: 1px solid #ddd !important;
+}
+
+.crud-btn {
+  cursor: pointer;
+}
+
+.edit-btn {
+  color: #3c81be;
+}
+
+/////////////////delete modal
+
+.alert-dismissible {
+  direction: rtl;
+  text-align: right;
+}
+
+.delete-text {
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  color: #222;
+}
+
+.card-header {
+  border: 0px !important;
+}
+
+

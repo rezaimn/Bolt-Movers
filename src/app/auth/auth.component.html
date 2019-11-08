@@ -1,0 +1,42 @@
+<mat-card class="login-card">
+  <mat-card-content class="wizard-card-content">
+    <form [formGroup]="LoginFormGroup">
+      <div class="login-flex-container content-height">
+        <span>
+          <img alt="homepage" class="light-logo" src="assets/images/logo-icon.png">
+        </span>
+        <div *ngIf="!isLoading">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>
+                Login
+              </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+              <mat-form-field>
+                <input autocomplete="new-password" matInput placeholder="Enter your email" type="text" formControlName="email"
+                  required>
+                <!-- <mat-icon matSuffix>send</mat-icon> -->
+              </mat-form-field>
+              <mat-form-field>
+                <input autocomplete="new-password" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+                  formControlName="password" required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </mat-form-field>
+              <div class="login-btn-container">
+                <button mat-raised-button (click)="login()" [disabled]="!LoginFormGroup.valid" color="primary">Login</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="preloader" *ngIf="isLoading">
+          <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

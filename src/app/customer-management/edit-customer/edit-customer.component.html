@@ -1,0 +1,55 @@
+<!-- ============================================================== -->
+<!-- Simple four boxes Row -->
+<!-- ============================================================== -->
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <!-- column -->
+  <div fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-xs="100">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          Edit Customers
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        <mat-form-field>
+          <input [(ngModel)]="customerModel.firstname" matInput name="firstname" placeholder="First Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="customerModel.middlename" matInput name="middlename" placeholder="Middle Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="customerModel.lastname" matInput name="lastname" placeholder="Last Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="customerModel.email" matInput name="email" placeholder="Email" type="email">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="customerModel.second_email" matInput name="second_email" placeholder="Second Email"
+                 type="email">
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="customerModel.phone" [textMask]="{mask: phonemask}" matInput name="phone"
+                 placeholder="Phone"
+                 type="tel">
+        </mat-form-field>
+        <mat-form-field>
+            <textarea [(ngModel)]="customerModel.address" matInput name="address"
+                      placeholder="Address"></textarea>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-footer>
+        <span class="footer-buttons">
+                 <button (click)="cancel()" button color="secondary" data-dismiss="modal" mat-raised-button
+                         type="button">cancel</button>
+        </span>
+        <span class="footer-buttons">
+
+        <button (click)="editCustomer()" button color="primary" data-dismiss="modal" mat-raised-button
+                type="button">Save</button>
+        </span>
+
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

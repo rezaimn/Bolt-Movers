@@ -1,0 +1,71 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{editMode? 'Update ':'Add New '}}Furniture</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <div class="row">
+    <div class="col-6">
+
+      <label for="file-upload">
+        <img [src]="furniture?.photo" class="rounded mr-2" width="180" *ngIf="furniture?.photo !== undefined">
+        <img src="assets/images/placeholder.png" *ngIf="furniture?.photo == undefined" class="rounded" width="80"
+             height="80">
+      </label>
+      <input type="file" style="display: none" id="file-upload" (change)="onFileChanged($event)">
+    </div>
+    <div class="col-6">
+      <mat-form-field class="">
+        <input name="name" [(ngModel)]="furniture.name" type="text" matInput placeholder="Name">
+      </mat-form-field>
+      <div class="has-alert">
+
+        <mat-checkbox [(ngModel)]="furniture.attributes.hasAlert">Has Alert</mat-checkbox>
+
+      </div>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="">
+        <input name="time" [(ngModel)]="furniture.attributes.time" type="number" matInput placeholder="Time">
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="">
+        <input name="width" [(ngModel)]="furniture.attributes.width" type="number" matInput placeholder="Width">
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="">
+        <input name="height" [(ngModel)]="furniture.attributes.height" type="number" matInput placeholder="Height">
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="">
+        <input name="depth" [(ngModel)]="furniture.attributes.depth" type="number" matInput placeholder="Depth">
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="">
+        <input name="weight" [(ngModel)]="furniture.attributes.weight" type="number" matInput placeholder="Weight">
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="">
+        <input [(ngModel)]="furniture.attributes.supply" matInput name="supply" placeholder="Supply" type="text">
+      </mat-form-field>
+    </div>
+
+  </div>
+  <div class="footer-buttons">
+           <span>
+        <button type="button" button mat-raised-button color="primary" (click)="addOrUpdateFurniture()"
+                data-dismiss="modal">{{editMode? 'Update':'Add'}}</button>
+      </span>
+      <span>
+        <button type="button" button mat-raised-button color="warn" (click)="cancel()"
+                data-dismiss="modal">Cancel</button>
+      </span>
+  </div>
+</div>

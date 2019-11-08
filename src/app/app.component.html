@@ -1,0 +1,7 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<router-outlet><app-spinner></app-spinner></router-outlet>
+<div class="data-loader" [style.display]="this.loading?'block':'none'">
+  <img src="../assets/images/loader.gif">
+</div>

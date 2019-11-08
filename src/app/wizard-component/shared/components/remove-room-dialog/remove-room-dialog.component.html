@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Remove Room</h1>
+<hr>
+<h3>
+  Are you sure?
+</h3>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel(null)">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" color="warn" cdkFocusInitial>Remove</button>
+</div>

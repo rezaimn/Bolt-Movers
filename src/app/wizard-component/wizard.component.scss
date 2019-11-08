@@ -1,0 +1,129 @@
+@import "../../assets/styles/variable";
+.mat-horizontal-stepper-header{
+  padding: 0 !important;
+}
+:host{
+  height: 100vh;
+  padding-top: 10vh;
+}
+.content-height{
+  // height: 70vh;
+  margin-bottom: 10px;
+}
+.wizard-card{
+  background: $main-content-background;
+  margin: 0;
+  border-radius: 0px;
+}
+.wizard-card-content{
+  background: $main-content-background;
+  min-height: 90vh;
+  padding-top: 0px;
+}
+
+mat-step{
+  height: 50vh;
+}
+.login-flex-container {
+  display: flex;
+  justify-content: center;
+}
+.login-flex-container > div {
+  margin: 5vh 10px 10px;
+  width: 500px;
+
+}
+
+.delivery-container {
+  display: flex;
+  justify-content: center;
+}
+
+.delivery-container > div {
+  margin: 5vh 10px 10px;
+  width: 100%;
+
+}
+
+.next-btn{
+  float: right;
+  color: $white;
+  background: $boltmovers-success;
+}
+.back-btn{
+  float: left;
+  color: $white;
+  background: $boltmovers-blue;
+}
+.btn-disabled{
+  background: $boltmovers-black!important;
+}
+mat-icon{
+  cursor: pointer;
+}
+.stepper-container{
+  background: $main-content-background;
+}
+
+.card-title{
+  text-align: center;
+  margin-top: 2vh;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+
+}
+
+.infoRow{
+  display: flex;
+  justify-content: space-around;
+  >span:first-child{
+    font-weight: 600;
+    color: #2c2c2c;
+  }
+  span{
+    padding: 15px;
+    width: 200px;
+  }
+}
+
+.border-light {
+  border-right: solid 2px #999;
+  border-color: #999 !important;
+}
+
+.estimatePrice{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.stepperActionsContainer{
+  display: flex;
+  justify-content: center;
+}
+
+.groupButtonContainer{
+  display: flex;
+  width: fit-content;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  margin-top: 30px;
+  button{
+    border-radius:0 !important;
+  }
+  .titleButton{
+    background: transparent;
+    font-weight: bold;
+    color: #545454;
+  }
+}

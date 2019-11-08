@@ -1,0 +1,22 @@
+@import "../../assets/styles/variable";
+.login-card{
+  background: $main-content-background;
+  margin: 0;
+  border-radius: 0px;
+  height: 100vh;
+}
+
+.login-flex-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.login-flex-container > div {
+  margin: 5vh 10px 10px;
+  width: 500px;
+}
+
+.login-btn-container{
+  display: flex;
+  justify-content: flex-end;
+}

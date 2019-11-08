@@ -1,0 +1,128 @@
+<div fxLayout="row">
+  <div fxFlex="20">
+    <mat-card class="assets-card">
+      <mat-card-header>
+        <mat-card-title>
+          Rooms
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="rooms">
+          <div>
+            <i class="material-icons add-room" (click)="openAddRoomDialog()">
+              add_circle_outline
+            </i>
+          </div>
+          <mat-card (click)="selectRoom(room,i)" *ngFor="let room of rooms;let i=index"
+                    [ngClass]="{'selected-room':selectedRoomIndex==i}"
+                    class="room-card">
+            <mat-card-content>
+              <p>{{room?.name}}</p>
+              <i class="material-icons" style="position: absolute;top: 7px;right: 0px;" (click)="deleteRoom(room,i)">
+                delete_outline
+              </i>
+              <i class="material-icons" style="position: absolute;top: 7px;right: 20px;" (click)="editRoom(room,i)">
+                create
+              </i>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="30">
+    <mat-card class="assets-card">
+      <mat-card-header>
+        <mat-card-title>
+          Room: {{rooms[selectedRoomIndex]?.name}}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="card-height">
+          <div *ngFor="let product of rooms[selectedRoomIndex]?.products;let i=index" class="room-products">
+            <div style="display: flex;">
+              <div>
+                <img (click)="deleteProduct(i)"
+                     [class.packedProduct]="product.boxing"
+                     [matTooltip]="product.name +' quantity:'+ product.quantity "
+                     [src]="imageUrl+(product?.photo)" matTooltipPosition="above"
+                     style="width: 48px;height: 48px"/>
+                <p class="product-count">{{product.quantity}}</p>
+              </div>
+              <mat-icon (click)="selectProductIndex(i)" [matMenuTriggerFor]="optionsMenu" aria-hidden="false"
+                        aria-label="Example home icon"
+                        mat-button style="cursor: pointer;">more_vert
+              </mat-icon>
+            </div>
+          </div>
+          <mat-menu #optionsMenu="matMenu" xPosition="after">
+            <div mat-menu-item (click)="stopClickPropagation($event)" class="menu-item-container">
+              Quantity: <input (change)="changeProductQuantity()" [formControl]="productQuantity" class="quantityInput"
+                               matInput
+                               min="1"
+                               placeholder="quantity" type="number">
+            </div>
+            <!-- <button mat-menu-item (click)="addBoxingToProduct()">Boxing</button> -->
+            <div mat-menu-item class="menu-item-container" (click)="stopClickPropagation($event)">
+              Need Boxing:
+              <mat-slide-toggle (change)="toggleProductBoxing()" [checked]="productBoxing" [formControl]="productBoxing"
+                                labelPosition="before"></mat-slide-toggle>
+            </div>
+            <button mat-menu-item style="width: 100%; color: #f00;" (click)="openRemoveProductDialog()">Delete</button>
+          </mat-menu>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="30">
+    <mat-card class="assets-card">
+      <mat-card-header>
+        <mat-card-title>
+          Category: {{categories[selectedCategoryIndex]?.name}}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <i (click)="openAddFurnitureDialog(null,categories[selectedCategoryIndex])" class="material-icons add-room">
+            add_circle_outline
+          </i>
+        </div>
+        <div class="card-height">
+          <div *ngFor="let product of categories[selectedCategoryIndex]?.products;let i=index" class="room-products">
+            <img (click)="addProductToSelectedRoom(product,i)" [matTooltip]="product.name"
+                 [src]="imageUrl+product.photo"
+                 matTooltipPosition="above" style="width: 48px;height: 48px"/>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="20">
+    <mat-card class="assets-card">
+      <mat-card-header>
+        <mat-card-title>
+          Categories
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <i (click)="openAddCategoryDialog(null)" class="material-icons add-room">
+            add_circle_outline
+          </i>
+        </div>
+        <mat-form-field style="margin-top: 10px">
+          <input #searchInput matInput placeholder="search category & furniture"/>
+        </mat-form-field>
+        <div class="categories">
+          <mat-card (click)="selectCategoryIndex(i)"
+                    *ngFor="let category of categories;let i=index"
+                    [ngClass]="{'selected-room':selectedCategoryIndex==i}" class="room-card">
+            <mat-card-content>
+              <p>{{category?.name}}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+.accordion-card {
+  padding: 10px;
+  margin-bottom: 20px;
+
+  mat-expansion-panel-header {
+    height: auto;
+  }
+}
+
+.quote-data {
+  color: #3c81be;
+}
+
+mat-card-title {
+  color: #3c81be;
+}
+
+.furniture-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 40px;
+}
+
+.furniture-card {
+  margin: 0px;
+  padding: 0px;
+}
+
+.crud-box {
+  position: absolute;
+  left: 80%;
+}
+
+.furniture-item {
+  border: 1px solid #ddd !important;
+}
+
+.crud-btn {
+  cursor: pointer;
+  right: 60px;
+  top: 24px;
+  color: #3c81be;
+  float: right;
+}
+
+.quote-title {
+  margin: 10px;
+}
+
+.canceled-quote {
+  color: #ff2a2c;
+  margin-top: 10px;
+  text-align: right;
+}
+
+.back-btn {
+  margin-left: 20px;
+
+  i {
+    font-size: 34px;
+    color: #3c81be;
+  }
+
+}
+
+/////////////////delete modal
+
+.alert-dismissible {
+  direction: rtl;
+  text-align: right;
+}
+
+.delete-text {
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  color: #222;
+}
+
+.card-header {
+  border: 0px !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+
+.send-mail {
+  margin-left: 30px;
+  margin-right: 30px;
+}

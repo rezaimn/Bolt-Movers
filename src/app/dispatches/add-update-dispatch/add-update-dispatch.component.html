@@ -1,0 +1,58 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{editMode ? 'Update ' : 'Add New '}}Dispatch</h4>
+  <button (click)="cancel()" aria-label="Close" class="close" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div fxLayout="row">
+    <div fxFlex="45">
+      <mat-card class="map-card ">
+        <mat-card-header>
+          <mat-card-title>
+            Select Dispatch Address
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="map-data">
+            <ngxgeo-autocomplete (componentCallback)="autoCompleteCallback1($event)"
+                                 (ngOnChanges)="autoCompleteCallback1($event)" *ngIf="!isFindingAddress"
+                                 [userSettings]="userSettings"
+                                 id="dispatch"></ngxgeo-autocomplete>
+            <mat-spinner *ngIf="isFindingAddress" diameter="30"></mat-spinner>
+            <mat-form-field style="margin-top: 10px">
+              <input [(ngModel)]="dispatch.coordinate" id="coordinate" matInput placeholder="Latitude and Longitude"/>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="55">
+      <mat-card class="map-card">
+        <mat-card-content>
+          <agm-map (mapClick)="mapClicked($event)" [disableDefaultUI]="false" [latitude]="marker?.lat"
+                   [longitude]="marker?.lng" [zoomControl]="true" [zoom]="zoom" class="map-height">
+
+            <agm-marker (dragEnd)="markerDragEnd($event)" [iconUrl]="'assets/images/destination.png'"
+                        [label]="marker?.label" [latitude]=" marker?.lat"
+                        [longitude]="marker?.lng" [markerDraggable]="marker?.draggable">
+              <agm-info-window>
+                <strong>InfoWindow content</strong>
+              </agm-info-window>
+            </agm-marker>
+          </agm-map>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="footer-buttons">
+           <span>
+        <button (click)="addOrUpdateDispatch()" button color="primary" data-dismiss="modal" mat-raised-button
+                type="button">{{editMode ? 'Update' : 'Add'}}</button>
+      </span>
+    <span>
+        <button (click)="cancel()" button color="warn" data-dismiss="modal" mat-raised-button
+                type="button">Cancel</button>
+      </span>
+  </div>
+</div>

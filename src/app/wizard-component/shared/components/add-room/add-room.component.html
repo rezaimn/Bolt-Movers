@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Add New Room</h1>
+<hr>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Room Name" [(ngModel)]="name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Loading Floor" [(ngModel)]="loadingFloor">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Unloading Floor" [(ngModel)]="unloadingFloor">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel(null)">Cancel</button>
+  <button mat-button (click)="save()" cdkFocusInitial>{{isNew ? 'Add' :
+    'Change'}}</button>
+</div>

@@ -1,0 +1,45 @@
+<!-- ============================================================== -->
+<!-- Simple four boxes Row -->
+<!-- ============================================================== -->
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <!-- column -->
+  <div fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-xs="100">
+    <mat-card>
+      <mat-card-content>
+        <!-- Row -->
+        <div fxLayout="row" fxLayoutWrap="wrap">
+          <button (click)="openAddDispatchDialog(null)" color="primary" mat-raised-button>
+            <mat-icon class="add">add</mat-icon>
+            Add New Dispatch
+          </button>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div *ngFor="let dispatch of dispatchList;let i=index"
+               class="col col-lg-6 col-md-6 col-sm-12 col-xs-12 furniture-card">
+            <mat-card class="furniture-item">
+              <mat-card-header>
+                <h5>{{dispatch?.coordinate}}</h5>
+                <span class="crud-box">
+                    <span>
+                      <i (click)="openAddDispatchDialog(dispatch)" class="material-icons  crud-btn edit-btn">
+                        create
+                      </i>
+                      <i (click)="setDispatchIndex(i)"
+                         class="material-icons danger-color crud-btn">
+                        delete_outline
+                      </i>
+                    </span>
+                </span>
+              </mat-card-header>
+              <h6 class="p-4">{{dispatch?.address}}</h6>
+
+            </mat-card>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- column -->
+</div>

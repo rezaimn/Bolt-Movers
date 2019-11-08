@@ -1,0 +1,99 @@
+<!-- ============================================================== -->
+<!-- Simple four boxes Row -->
+<!-- ============================================================== -->
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <!-- column -->
+  <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <!-- Row -->
+        <div fxLayout="row" fxLayoutWrap="wrap">
+          <button (click)="openAddCategoryDialog(null)" color="primary" mat-raised-button>
+            <mat-icon class="add">add</mat-icon>
+            Add New Category
+          </button>
+        </div>
+        <hr>
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let category of categoryList;let i=index" class="accordion-card z-index-10">
+            <mat-expansion-panel-header (click)="getCategoryFurniture(category.id)" class="accordion-header ">
+              <mat-panel-title>
+                <h5>{{category.name}}</h5>
+              </mat-panel-title>
+
+
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="">
+                <button (click)="setCategoryIndex(i)" class="float-right ml-3 mr-3 z-index-1000" color="warn"
+                        mat-raised-button>
+                  <mat-icon class="add">delete_outline</mat-icon>
+                  Delete Category
+                </button>
+                <button (click)="openAddCategoryDialog(category)" class="float-right ml-3 mr-3 z-index-1000"
+                        color="primary"
+                        mat-raised-button>
+                  <mat-icon class="add">edit</mat-icon>
+                  Edit Category
+                </button>
+
+                <button (click)="openAddFurnitureDialog(null,category)" class="float-right ml-3 mr-3 z-index-1000"
+                        color="primary"
+                        mat-raised-button>
+                  <mat-icon class="add">add</mat-icon>
+                  Add New Furniture
+                </button>
+
+              </div>
+            </div>
+            <div class="row">
+
+
+              <div *ngFor="let furniture of selectedCategoryFurnitureList;let i=index"
+                   class="col col-lg-6 col-md-6 col-sm-12 col-xs-12 furniture-card">
+                <mat-card class="furniture-item">
+                  <mat-card-header>
+                    <div mat-card-avatar>
+                      <img class="furniture-image" [src]="baseUrl+'/api/v1/download/attachment/'+furniture.photo"
+                           [alt]="furniture.name">
+                    </div>
+                    <mat-card-title>{{furniture.name}}</mat-card-title>
+                    <mat-card-subtitle>Time: {{furniture.attributes.time}}</mat-card-subtitle>
+                    <span class="crud-box">
+                      <span>
+                        <i (click)="openAddFurnitureDialog(i,category)" class="material-icons edit-btn crud-btn">
+                            create
+                        </i>
+                        <i class="material-icons danger-color crud-btn"
+                           (click)="setFurnitureIndex(i)">
+                            delete_outline
+                        </i>
+                      </span>
+                    </span>
+                  </mat-card-header>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-6">
+                        <p><strong>Width:</strong>  {{furniture.attributes.width}}</p>
+                      </div>
+                      <div class="col-6">
+                        <p><strong>Height:</strong>  {{furniture.attributes.height}}</p>
+                      </div>
+                      <div class="col-6">
+                        <p><strong>Depth:</strong>  {{furniture.attributes.depth}}</p>
+                      </div>
+                      <div class="col-6">
+                        <p><strong>Weight:</strong>  {{furniture.attributes.weight}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- column -->
+</div>

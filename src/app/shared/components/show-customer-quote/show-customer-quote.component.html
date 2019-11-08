@@ -1,0 +1,205 @@
+<!-- ============================================================== -->
+<!-- Simple four boxes Row -->
+<!-- ============================================================== -->
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <div class="pt-5" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-xs="100"><span (click)="showQuoteInWizard(0)"
+                                                                             *ngIf="selectedQuoteForEdit !== 0"
+                                                                             class="back-btn">  <i
+    class="material-icons  cursor-pointer ">    arrow_back  </i></span>
+    <mat-card *ngIf="selectedQuoteForEdit === 0;else editQuote " class="bg-transparent">
+      <mat-card-header *ngIf="QuoteList?.length===0"><h5>There is No Estimate Available for this Customer</h5>
+      </mat-card-header>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let quote of QuoteList;let i=index" class="accordion-card">
+          <mat-expansion-panel-header>
+            <mat-panel-title><span><h5 class="quote-title "> {{quote.name}}</h5></span></mat-panel-title>
+            <mat-panel-description><span style="width: 100%"><h5 *ngIf="quote.status==='CANCELED'"
+                                                                 class="canceled-quote "> Canceled</h5></span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <div
+              style="background: #fff;border-radius: 5px;border: solid 1px #ccc;padding: 20px;margin: 14px;box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);">
+              <div><span (click)="sendQuoteHTML(i)" *ngIf="quote.status==='CREATED'" class="crud-btn">            <i
+                class="material-icons   "
+                matTooltip="Edit Quote">              mail_outline            </i>          </span> <span
+                (click)="showQuoteInWizard(quote.id)" *ngIf="quote.status==='CREATED'" class="crud-btn">            <i
+                class="material-icons   " matTooltip="Edit Quote">              edit            </i>          </span>
+                <!-- Row -->
+                <div fxLayout="row" fxLayoutWrap="wrap"><h5>View Customer Estimate</h5></div>
+                <hr>
+                <div [id]="'Quoteee-'+i" style="font-family: 'Poppins', sans-serif">
+                  <div
+                    style="background: #fff;border-radius: 5px;border: solid 1px #ccc;padding: 20px;margin: 14px;box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);">
+                    <div><a> Estimate Details :  {{quote.name}}</a></div>
+                    <div>
+                      <div style="width: 50%">
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Estimate Date: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.moving_date}}</span></div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Prepared by: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.preparedBy}}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="background: #fff;border-radius: 5px;border: solid 1px #ccc;padding: 20px;margin: 14px;box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);">
+                    <div><a> Customer Information </a></div>
+                    <div>
+                      <div style="width: 50%">
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Name: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.customerName}} </span></div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Phone No: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.phoneNumber}}</span></div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Email: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.email}}</span></div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Moving From: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.movingFrom}}</span></div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Moving To: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.movingTo}}</span></div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Moving Date: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.movingDate}}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="background: #fff;border-radius: 5px;border: solid 1px #ccc;padding: 20px;margin: 14px;box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);">
+                    <div><a> Moving Estimate </a></div>
+                    <div><span style="  font-size: 20px;font-weight: bold;">{{'$' + quote?.estimatePrice }}</span>
+                      <p>* The estimated total cost of moving is valid for 2 weeks after the underlying estimate
+                        date.</p>
+                      <p>Dispatch:  {{quote?.dispatchData?.address}}</p></div>
+                  </div>
+                  <div
+                    style="background: #fff;border-radius: 5px;border: solid 1px #ccc;padding: 20px;margin: 14px;box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);">
+                    <div><a> Job Complexity </a></div>
+                    <div>
+                      <div fxFlex="50">
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Number of Men: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.numberOfMen}}</span></div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Number of Trucks: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.numberOfTrucks}}</span>
+                        </div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Moving Distance (miles): </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.movingDistance}}</span>
+                        </div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Total Volume (ft3): </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.totalVolume}}</span></div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Total Weight (lbs): </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.TotalWeight}}</span></div>
+                      </div>
+                      <div fxFlex="50">
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Garage Entrance: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.garageEntrance}}</span>
+                        </div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Frontdoor Entrance: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.frontdoorEntrance}}</span>
+                        </div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Storage Moving: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.storageMoving}}</span></div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Setting Up: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.settingUp}}</span></div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Urgent Moving: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.urgentMoving}}</span></div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Clustered Furniture: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.clusteredFurniture}}</span>
+                        </div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">Loading Only: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.loadingOnly}}</span></div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">unloading Only: </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.unloadingOnly}}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="background: #fff;border-radius: 5px;border: solid 1px #ccc;padding: 20px;margin: 14px;box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);">
+                    <div><a> Suggested Storage </a></div>
+                    <div>
+                      <div fxFlex="50">
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">                <strong> Storage Size</strong>              </span>
+                          <span style="padding: 15px;width: 100%;">                <strong> Quantity</strong>              </span>
+                        </div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">5' * 10': </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.storageSizes[0].num}}</span>
+                        </div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">10' * 10': </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.storageSizes[2].num}}</span>
+                        </div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">10' * 15': </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.storageSizes[3].num}}</span>
+                        </div>
+                        <div style=" display: flex;justify-content: space-around;"><span
+                          style="font-weight: 600;color: #2c2c2c;float: left;padding: 15px;text-align: left;width: 100%;">10' * 20': </span>
+                          <span style="color: #3c81be;padding: 15px;width: 100%;">{{quote?.storageSizes[4].num}}</span>
+                        </div>
+                      </div>
+                      <div fxFlex="100"><p>* Suggested number of storage units is estimated by approximate furniture
+                        volumes and it is not included in the quoted moving cost.</p></div>
+                    </div>
+                  </div>
+                  <div
+                    style="background: #fff;border-radius: 5px;border: solid 1px #ccc;padding: 20px;margin: 14px;box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);">
+                    <div><a> Furniture List By Category</a></div>
+                    <div>
+                      <table style="width:100%">
+                        <th *ngFor="let head of displayedColumns" style="padding: 5px;border-bottom: 2px solid #ccc">
+                          <strong>{{head}}</strong></th>
+                        <tbody *ngFor="let category of quote?.categoryList" style="border-bottom: 1px solid #ccc;">
+                        <tr style="border-bottom: 1px solid #ccc;background: #ddd">
+                          <td style="padding: 10px">Category: {{category.name}}</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr *ngFor="let item of category.products" style="border-bottom: 1px solid #ccc;">
+                          <td style="padding: 10px">{{item.item}}</td>
+                          <td style="padding: 10px">{{item.boxing}}</td>
+                          <td style="padding: 10px">{{item.loadingFloor}}</td>
+                          <td style="padding: 10px">{{item.unloadingFloor}}</td>
+                          <td style="padding: 10px">
+                            <div *ngFor="let answer of item.answers"><p style="margin: 5px"><strong>{{answer.question}}
+                              : </strong>  {{answer.answer}}</p></div>
+                          </td>
+                        </tr>
+                        </tbody>
+
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card>
+    <ng-template #editQuote>
+      <app-wizard [selectedQuote]="selectedQuoteForEdit"></app-wizard>
+    </ng-template>
+  </div>
+</div>

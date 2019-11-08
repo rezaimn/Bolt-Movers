@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+.mat-card-avatar{
+  width: 60px!important;
+  height: 60px!important;
+
+}
+.danger-color{
+  color: #ff3c29;
+}
+.primary-color{
+  color: #215ee5;
+}
+.mat-card-header-text{
+  margin-top: 24px!important;
+}
+.card-body{
+  border-top: 1px solid #eee;
+}
+.ng-hide{
+  display: none;
+}
